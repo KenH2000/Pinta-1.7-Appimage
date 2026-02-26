@@ -90,132 +90,13 @@ cp /usr/share/icons/gnome/256x256/categories/applications-graphics.png "$appdir"
 ps aux|grep mono
 #to show the libraries used:
 lsof -P -T -p <mono PID>|awk '{print $9}'
-#NOTE:  Additional resources are added when addin manager and file save as ora are clicked. I tried to excercise every menu function to make sure all resources were added to the list.
+#NOTE:  Additional resources are added when addin manager and file save as ora are clicked.<br>
+Try to use every menu function to make sure all resources are added to the list.
 ```
-### Final Functional AppDir Tree
-The resulting resources needed to run pinta/mono are shown here in tree form.  This helps in developing a plan to copy the needed files to the AppDir. 
-<pre>
-AppDir
-├── AppRun
-├── pinta.desktop
-├── pinta.png
-└── usr
-    └── local
-        ├── bin
-        │   ├── mono
-        │   ├── mono-sgen
-        │   └── pinta
-        ├── etc
-        │   └── mono
-        │       └── config
-        └── lib
-            ├── libmono-native.so
-            ├── libMonoPosixHelper.so
-            ├── mono
-            │   ├── 4.5
-            │   │   └── mscorlib.dll
-            │   └── gac
-            │       ├── atk-sharp
-            │       │   └── 2.12.0.0__35e10195dab3c99f
-            │       │       ├── atk-sharp.dll
-            │       │       ├── atk-sharp.dll.config
-            │       │       ├── libatksharpglue-2.so
-            │       │       └── libglibsharpglue-2.so -> ../../glib-sharp/2.12.0.0__35e10195dab3c99f/libglibsharpglue-2.so
-            │       ├── gdk-sharp
-            │       │   └── 2.12.0.0__35e10195dab3c99f
-            │       │       ├── gdk-sharp.dll
-            │       │       ├── gdk-sharp.dll.config
-            │       │       ├── libgdksharpglue-2.so
-            │       │       └── libglibsharpglue-2.so -> ../../glib-sharp/2.12.0.0__35e10195dab3c99f/libglibsharpglue-2.so
-            │       ├── glib-sharp
-            │       │   └── 2.12.0.0__35e10195dab3c99f
-            │       │       ├── glib-sharp.dll
-            │       │       ├── glib-sharp.dll.config
-            │       │       └── libglibsharpglue-2.so
-            │       ├── gtk-sharp
-            │       │   └── 2.12.0.0__35e10195dab3c99f
-            │       │       ├── gtk-sharp.dll
-            │       │       ├── gtk-sharp.dll.config
-            │       │       ├── libglibsharpglue-2.so -> ../../glib-sharp/2.12.0.0__35e10195dab3c99f/libglibsharpglue-2.so
-            │       │       └── libgtksharpglue-2.so
-            │       ├── ICSharpCode.SharpZipLib
-            │       │   └── 4.84.0.0__1b03e6acf1164f73
-            │       │       └── ICSharpCode.SharpZipLib.dll
-            │       ├── Mono.Addins
-            │       │   └── 1.0.0.0__0738eb9f132ed756
-            │       │       └── Mono.Addins.dll
-            │       ├── Mono.Addins.Gui
-            │       │   └── 1.0.0.0__0738eb9f132ed756
-            │       │       └── Mono.Addins.Gui.dll
-            │       ├── Mono.Addins.Setup
-            │       │   └── 1.0.0.0__0738eb9f132ed756
-            │       │       └── Mono.Addins.Setup.dll
-            │       ├── Mono.Cairo
-            │       │   └── 4.0.0.0__0738eb9f132ed756
-            │       │       ├── Mono.Cairo.dll
-            │       │       └── Mono.Cairo.dll.config
-            │       ├── Mono.Posix
-            │       │   └── 4.0.0.0__0738eb9f132ed756
-            │       │       └── Mono.Posix.dll
-            │       ├── pango-sharp
-            │       │   └── 2.12.0.0__35e10195dab3c99f
-            │       │       ├── libglibsharpglue-2.so -> ../../glib-sharp/2.12.0.0__35e10195dab3c99f/libglibsharpglue-2.so
-            │       │       ├── libpangosharpglue-2.so
-            │       │       ├── pango-sharp.dll
-            │       │       └── pango-sharp.dll.config
-            │       ├── System
-            │       │   └── 4.0.0.0__b77a5c561934e089
-            │       │       └── System.dll
-            │       ├── System.Core
-            │       │   └── 4.0.0.0__b77a5c561934e089
-            │       │       └── System.Core.dll
-            │       └── System.Xml
-            │           └── 4.0.0.0__b77a5c561934e089
-            │               └── System.Xml.dll
-            └── pinta
-                ├── Pinta.Core.dll
-                ├── Pinta.Core.dll.config
-                ├── Pinta.Effects.dll
-                ├── Pinta.exe
-                ├── Pinta.Gui.Widgets.dll
-                ├── Pinta.Resources.dll
-                └── Pinta.Tools.dll
-
-38 directories, 46 files
-</pre>
 #### Copy mono libraries, binaries and the config file
-After analyzing the running program.  Copy the resources that pinta/mono needs to the AppDir.
-```
-appdir=/home/"$USER"/temp/AppDir
-mkdir -p "$appdir"/usr/local/etc/mono
-mkdir -p "$appdir"/usr/local/bin
-mkdir -p "$appdir"/usr/local/lib/mono/4.5
-mkdir -p "$appdir"/usr/local/lib/mono/gac
-mkdir -p "$appdir"/usr/local/lib/pinta
+After analyzing the running program.  Copy the resources that pinta/mono needs to the AppDir.<br>
+https://github.com/KenH2000/Pinta-1.7-Appimage/blob/main/pinta_tree.txt
 
-cp /etc/mono/config "$appdir"/usr/local/etc/mono/config
-cp /usr/bin/mono "$appdir"/usr/local/bin/.
-cp /usr/bin/mono-sgen "$appdir"/usr/local/bin/.
-cp /usr/local/bin/pinta "$appdir"/usr/local/bin/.
-cp /usr/lib/libmono-native.so "$appdir"/usr/local/lib/.
-cp /usr/lib/libMonoPosixHelper.so "$appdir"/usr/local/lib/.
-cp /usr/lib/mono/4.5/mscorlib.dll "$appdir"/usr/local/lib/mono/4.5/.
-cp /usr/lib/mono/4.5/mscorlib.dll.so "$appdir"/usr/local/lib/mono/4.5/.
-cp -R /usr/lib/mono/gac/atk-sharp "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/gdk-sharp "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/glib-sharp "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/gtk-sharp "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/ICSharpCode.SharpZipLib "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/Mono.Addins "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/Mono.Addins.Gui "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/Mono.Addins.Setup "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/Mono.Cairo "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/Mono.Posix "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/pango-sharp "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/System "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/System.Core "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/System.Xml "$appdir"/usr/local/lib/mono/gac 
-```
 #### Edit library configuration files from /usr/lib/cli/
 The configuration and .so files for the libraries listed below are in /usr/lib/cli.  The .so files need to be copied to the applicable AppDir gac folder, and config files edited so the pinta appimage can find them.
 ```
@@ -252,117 +133,23 @@ ln -s ../../glib-sharp/"$tgtdir"/libglibsharpglue-2.so .
 APPDIR=/home/$USER/temp/AppDir
 echo 'exec ${APPDIR}/usr/local/bin/mono ${APPDIR}/usr/local/lib/pinta/Pinta.exe "$@"'>AppDir/usr/local/bin/pinta
 ```
-
+### pinta_create_AppDir.sh
+The script automates the entire process described above.<br>
+https://github.com/KenH2000/Pinta-1.7-Appimage/blob/main/pinta_create_AppDir.sh
+## Testing the AppDir
+1. Copy the AppDir to linux running from live CD or use bare-bones VM without any of the mono/pinta installs.
+2. Run and add missing libraries or correct configuration files.
+3. Repeat until pinta runs.
+4. Test all the menu functions.
+5. Make final appimage.
 #### Run appimagetool
 ```
 ARCH=x86_64 /home/$USER/Documents/appimagetool-x86_64.AppImage /home/$USER/temp/AppDir/ /home/$USER/temp/pinta-appimage
 ```
-
-### pinta_create_AppDir.sh
-The script automates the entire process described above
-```
-#!/bin/bash
-appdir=/home/"$USER"/temp/AppDir
-mkdir -p "$appdir"/usr/local/etc/mono
-mkdir -p "$appdir"/usr/local/bin
-mkdir -p "$appdir"/usr/local/lib/mono/4.5
-mkdir -p "$appdir"/usr/local/lib/mono/gac
-mkdir -p "$appdir"/usr/local/lib/pinta
-
-cp /etc/mono/config "$appdir"/usr/local/etc/mono/config
-cp /usr/bin/mono "$appdir"/usr/local/bin/.
-cp /usr/bin/mono-sgen "$appdir"/usr/local/bin/.
-cp /usr/local/bin/pinta "$appdir"/usr/local/bin/.
-cp /usr/lib/libmono-native.so "$appdir"/usr/local/lib/.
-cp /usr/lib/libMonoPosixHelper.so "$appdir"/usr/local/lib/.
-cp /usr/lib/mono/4.5/mscorlib.dll "$appdir"/usr/local/lib/mono/4.5/.
-cp /usr/lib/mono/4.5/mscorlib.dll.so "$appdir"/usr/local/lib/mono/4.5/.
-cp -R /usr/lib/mono/gac/atk-sharp "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/gdk-sharp "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/glib-sharp "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/gtk-sharp "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/ICSharpCode.SharpZipLib "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/Mono.Addins "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/Mono.Addins.Gui "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/Mono.Addins.Setup "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/Mono.Cairo "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/Mono.Posix "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/pango-sharp "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/System "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/System.Core "$appdir"/usr/local/lib/mono/gac
-cp -R /usr/lib/mono/gac/System.Xml "$appdir"/usr/local/lib/mono/gac
-#copy pinta files from system if not already there from compile
-if [ ! -f AppDir/usr/local/lib/pinta/Pinta.exe ];then
-  cp -R /usr/lib/pinta/* "$appdir"/usr/local/lib/pinta                 
-fi
-
-#copy /usr/lib/cli/ .so files to "$appdir"/usr/local/lib/gac/...
-src=/usr/lib/cli
-files=(atk-sharp-2.0 gdk-sharp-2.0 glib-sharp-2.0 gtk-sharp-2.0 pango-sharp-2.0)
-tgtdir=2.12.0.0__35e10195dab3c99f
-for x in "${files[@]}";do
-tgtfdr=$(echo "$x"|sed 's|-2.0||')
-fn=$(ls "$src/$x"|grep ".so")
-cp "$src/$x/$fn" "$appdir"/usr/local/lib/mono/gac/"$tgtfdr/$tgtdir/$fn"
-done
-
-#remove absolute paths from .config files
-for x in "${files[@]}";do
-tgtfdr=$(echo "$x"|sed 's|-2.0||')
-fn=$(ls "$appdir"/usr/local/lib/mono/gac/"$tgtfdr/$tgtdir/"*.config)
-sed -i 's|/usr/lib/cli/'"$x"'/||' "$fn"
-sed -i 's|/usr/lib/cli/glib-sharp-2.0/||' "$fn"
-#add symbolic links to libglibsharpglue-2.so
-cd "$appdir"/usr/local/lib/mono/gac/"$tgtfdr"/"$tgtdir"/
-ln -s ../../glib-sharp/"$tgtdir"/libglibsharpglue-2.so .
-done
-
-#EDIT the pinta bin file so it runs from $appdir
-echo 'exec ${APPDIR}/usr/local/bin/mono ${APPDIR}/usr/local/lib/pinta/Pinta.exe "$@"'>"$appdir"/usr/local/bin/pinta
-
-#create AppRun
-ar='''#!/bin/bash
-
-# If running from an extracted image, then export ARGV0 and APPDIR
-if [ -z "${APPIMAGE}" ]; then
-    export ARGV0="$0"
-
-    self=$(readlink -f -- "$0") # Protect spaces (issue 55)
-    here="${self%/*}"
-    tmp="${here%/*}"
-    export APPDIR="$here" #"${tmp%/*}"
-fi
-
-export APPIMAGE_COMMAND=$(command -v -- "$ARGV0")
-export MONO_CONFIG=${APPDIR}/usr/local/etc/mono/config
-export MONO_CFG_DIR=${APPDIR}/usr/local/etc/mono
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"${APPDIR}/usr/local/lib"
-
-"$APPDIR/usr/local/bin/pinta" "$@"
-'''
-echo "$ar">"$appdir"/AppRun
-chmod +x "$appdir"/AppRun
-
-#create pinta.desktop in AppDir (required by appimage builder)
-pd='''[Desktop Entry]
-Name=Pinta
-GenericName=Pinta
-Comment=Draw package
-Exec=pinta %f
-Terminal=false
-Icon=pinta
-Type=Application
-Categories=System;
-StartupNotify=true'''
-echo "$pd">"$appdir"/pinta.desktop
-
-#copy 256x256 icon, pinta.png in AppDir (required by appimage builder)
-cp /usr/share/icons/gnome/256x256/categories/applications-graphics.png "$appdir"/pinta.png
-```
 ##  ----DONE WITH APPIMAGE----
 
 ### FOR INFO ONLY -- NOT RECOMMENDED FOR FINAL APPIMAGE CREATION
-Trial and error led me to try building mono directly into the AppDir.  Although this populates AppDir with many needed resources, it OVERPOPULATES with 500M of unneeded files.  It does not include the glib/atk/gdk/gtk-sharp libraries and configuration files needed for pinta to run.  But it was helpful in leading to a working solution with mono.
+This may be helpful in the development process.  But it populates AppDir with over 500M of unneeded files and did not include the glib/atk/gdk/gtk-sharp libraries or fix the configuration files.  
 ```
 #https://download.mono-project.com/sources/mono/index.html
 cd mono-6.12.0.199
