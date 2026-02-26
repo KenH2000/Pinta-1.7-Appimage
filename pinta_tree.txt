@@ -1,0 +1,89 @@
+#Final functional AppDir tree------------------------------
+AppDir
+├── AppRun
+├── pinta.desktop
+├── pinta.png
+└── usr
+    └── local
+        ├── bin
+        │   ├── mono
+        │   ├── mono-sgen
+        │   └── pinta
+        ├── etc
+        │   └── mono
+        │       └── config
+        └── lib
+            ├── libmono-native.so
+            ├── libMonoPosixHelper.so
+            ├── mono
+            │   ├── 4.5
+            │   │   └── mscorlib.dll
+            │   └── gac
+            │       ├── atk-sharp
+            │       │   └── 2.12.0.0__35e10195dab3c99f
+            │       │       ├── atk-sharp.dll
+            │       │       ├── atk-sharp.dll.config
+            │       │       ├── libatksharpglue-2.so
+            │       │       └── libglibsharpglue-2.so -> ../../glib-sharp/2.12.0.0__35e10195dab3c99f/libglibsharpglue-2.so
+            │       ├── gdk-sharp
+            │       │   └── 2.12.0.0__35e10195dab3c99f
+            │       │       ├── gdk-sharp.dll
+            │       │       ├── gdk-sharp.dll.config
+            │       │       ├── libgdksharpglue-2.so
+            │       │       └── libglibsharpglue-2.so -> ../../glib-sharp/2.12.0.0__35e10195dab3c99f/libglibsharpglue-2.so
+            │       ├── glib-sharp
+            │       │   └── 2.12.0.0__35e10195dab3c99f
+            │       │       ├── glib-sharp.dll
+            │       │       ├── glib-sharp.dll.config
+            │       │       └── libglibsharpglue-2.so
+            │       ├── gtk-sharp
+            │       │   └── 2.12.0.0__35e10195dab3c99f
+            │       │       ├── gtk-sharp.dll
+            │       │       ├── gtk-sharp.dll.config
+            │       │       ├── libglibsharpglue-2.so -> ../../glib-sharp/2.12.0.0__35e10195dab3c99f/libglibsharpglue-2.so
+            │       │       └── libgtksharpglue-2.so
+            │       ├── ICSharpCode.SharpZipLib
+            │       │   └── 4.84.0.0__1b03e6acf1164f73
+            │       │       └── ICSharpCode.SharpZipLib.dll
+            │       ├── Mono.Addins
+            │       │   └── 1.0.0.0__0738eb9f132ed756
+            │       │       └── Mono.Addins.dll
+            │       ├── Mono.Addins.Gui
+            │       │   └── 1.0.0.0__0738eb9f132ed756
+            │       │       └── Mono.Addins.Gui.dll
+            │       ├── Mono.Addins.Setup
+            │       │   └── 1.0.0.0__0738eb9f132ed756
+            │       │       └── Mono.Addins.Setup.dll
+            │       ├── Mono.Cairo
+            │       │   └── 4.0.0.0__0738eb9f132ed756
+            │       │       ├── Mono.Cairo.dll
+            │       │       └── Mono.Cairo.dll.config
+            │       ├── Mono.Posix
+            │       │   └── 4.0.0.0__0738eb9f132ed756
+            │       │       └── Mono.Posix.dll
+            │       ├── pango-sharp
+            │       │   └── 2.12.0.0__35e10195dab3c99f
+            │       │       ├── libglibsharpglue-2.so -> ../../glib-sharp/2.12.0.0__35e10195dab3c99f/libglibsharpglue-2.so
+            │       │       ├── libpangosharpglue-2.so
+            │       │       ├── pango-sharp.dll
+            │       │       └── pango-sharp.dll.config
+            │       ├── System
+            │       │   └── 4.0.0.0__b77a5c561934e089
+            │       │       └── System.dll
+            │       ├── System.Core
+            │       │   └── 4.0.0.0__b77a5c561934e089
+            │       │       └── System.Core.dll
+            │       └── System.Xml
+            │           └── 4.0.0.0__b77a5c561934e089
+            │               └── System.Xml.dll
+            └── pinta
+                ├── Pinta.Core.dll
+                ├── Pinta.Core.dll.config
+                ├── Pinta.Effects.dll
+                ├── Pinta.exe
+                ├── Pinta.Gui.Widgets.dll
+                ├── Pinta.Resources.dll
+                └── Pinta.Tools.dll
+
+38 directories, 46 files
+-----------------------------------------------------------
